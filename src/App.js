@@ -7,6 +7,7 @@ import ProductPage from "./components/ProductPageComponent";
 import Admin from "./components/admin/AdminComponent";
 
 import {ThemeProvider} from './ThemeContext';
+import ProductDetails from './components/ProductDetails';
 
 function App() {
   const theme="light";
@@ -26,6 +27,7 @@ function App() {
             <Route path="/" exact component={HomePage}></Route>
             <Route path="/products" exact component={ProductPage}></Route>
             <Route path="/admin" component={Admin}></Route>
+            <Route path="/product/:id" component={ProductDetails}></Route>
           </Switch>
         </ThemeProvider>
       </div>

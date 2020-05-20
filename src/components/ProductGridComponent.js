@@ -17,7 +17,7 @@ class ProductGrid extends React.Component {
                 <Card.Text>
                 {product.description}
                 </Card.Text>
-                <Card.Link href="#">View Details</Card.Link>
+                <Card.Link href={`/product/${product.id}`}>View Details</Card.Link>
                 <Card.Link href="#">Add to Cart</Card.Link>
                 </Card.Body>
                 </Card>

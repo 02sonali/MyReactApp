@@ -1,9 +1,10 @@
 import React from 'react';
-
-class ImageDetails extends React.Component {
-    render() {
-        return <div className="p-4">Images Details here </div>
-    }
+import {useParams} from "react-router-dom";
+function ProductDetails() {
+    let { id } = useParams();
+  
+    return <div className="p-4">Product Details here  {id}</div>
+    
 }
 
-export default ImageDetails;
+export default ProductDetails;
