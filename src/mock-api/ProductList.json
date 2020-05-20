@@ -1,0 +1,7 @@
+[
+    {"id": 0, "name": "pen", "price" : "10", "uploadDate": "", "description": "a pen"},
+    {"id": 1, "name": "scissors", "price" : "15", "uploadDate": "", "description": "a scissor"},
+    {"id": 2, "name": "scale", "price" : "20", "uploadDate": "", "description": "a scale"},
+    {"id": 3, "name": "eraser", "price" : "4", "uploadDate": "", "description": "an eraser"},
+    {"id": 4, "name": "sharpener", "price" : "5", "uploadDate": "", "description": "a sharpener"}
+]

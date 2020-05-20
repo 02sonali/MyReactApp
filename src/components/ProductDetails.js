@@ -2,7 +2,7 @@ import React from 'react';
 
 class ImageDetails extends React.Component {
     render() {
-        return <div>Images Details here </div>
+        return <div className="p-4">Images Details here </div>
     }
 }
 

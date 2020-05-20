@@ -1,10 +1,10 @@
 import React from "react";
-import ImageService from "../../services/ImageService";
-import Images from "../../mock-api/ImageList.json";
-class ImageList extends React.Component {
+import ProductService from "../../services/ProductService";
+import Images from "../../mock-api/ProductList.json";
+class ProductList extends React.Component {
     constructor(props) {
         super(props);
-        this.imageService = new ImageService();
+        this.imageService = new ProductService();
         this.state = {items: Images};
         this.showEditMode = this.showEditMode.bind(this);
     }
@@ -46,4 +46,4 @@ class ImageList extends React.Component {
     }
 }
 
-export default ImageList;
+export default ProductList;

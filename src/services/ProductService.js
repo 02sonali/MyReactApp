@@ -1,7 +1,7 @@
-class ImageService {
+class ProductService {
 
     async getImages() {
-        const imageUrl = `src/mock-api/ImageList.json`;
+        const imageUrl = `src/mock-api/ProductList.json`;
         return fetch(imageUrl, 
             {
                 headers : { 
@@ -14,4 +14,4 @@ class ImageService {
     }
 }
 
-export default ImageService;
+export default ProductService;

@@ -3,11 +3,10 @@ import './App.css';
 import Header from "./components/HeaderComponent";
 import {Route, Switch} from "react-router-dom";
 import HomePage from "./components/HomePageComponent";
+import ProductPage from "./components/ProductPageComponent";
 import Admin from "./components/admin/AdminComponent";
 
 import {ThemeProvider} from './ThemeContext';
-
-// import ImageGrid from './components/ImageGridComponent';
 
 function App() {
   const theme="light";
@@ -16,7 +15,7 @@ function App() {
   // const route = window.location.pathname;
   // if(route === "/gallery") {
   //   return <div className="App">
-  //     <ImageGrid/>
+  //     <ProductGrid/>
   //   </div>
   // } else {
     return (
@@ -25,6 +24,7 @@ function App() {
           <Header></Header>
           <Switch>
             <Route path="/" exact component={HomePage}></Route>
+            <Route path="/products" exact component={ProductPage}></Route>
             <Route path="/admin" component={Admin}></Route>
           </Switch>
         </ThemeProvider>
