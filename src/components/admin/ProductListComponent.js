@@ -1,27 +1,25 @@
 import React from "react";
 import ProductService from "../../services/ProductService";
-import Images from "../../mock-api/ProductList.json";
+import Products from "../../mock-api/ProductList.json";
 class ProductList extends React.Component {
     constructor(props) {
         super(props);
-        this.imageService = new ProductService();
-        this.state = {items: Images};
-        this.showEditMode = this.showEditMode.bind(this);
+        this.productService = new ProductService();
+        this.state = {items: Products};
     }
     componentDidMount() {
         //this.getItems();
     }
-    showEditMode() {
+    showEditMode = () => {
         this.props.showEditMode(true);
     }
     render() {
-        let ImageRows = Images.map((image) => <tr key={image.id}>
-            <td>{image.name}</td>
-            <td>{image.url}</td>
-            <td>{image.category}</td>
+        let productRows = Products.map((product) => <tr key={product.id}>
+            <td>{product.name}</td>
+            <td>{product.price}</td>
             <td>
-                <a href="#" onClick={this.showEditMode}>Edit</a>
-                <a href="#">Delete</a>
+                <a href="#" onClick={this.showEditMode}>Edit</a> &nbsp;|
+                <a href="#">&nbsp; Delete</a>
             </td>
             </tr>
         )
@@ -30,17 +28,16 @@ class ProductList extends React.Component {
                 <tbody>
                     <tr>
                         <th>Name</th>
-                        <th>URL</th>
-                        <th>Category</th>
+                        <th>Price</th>
                         <th>Actions</th>
                     </tr>
-                    {ImageRows}
+                    {productRows}
                 </tbody>
             </table>
         );
     }
     getItems() {
-        // this.imageService.getImages().then(items => {
+        // this.productService.getproducts().then(items => {
         //     this.setState({items: items});
         // });
     }

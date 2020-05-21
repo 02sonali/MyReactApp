@@ -1,35 +1,44 @@
 import React from "react";
 import InputBox from "../common/InputBox";
 
-class AddImage extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {name: '', category: ""};
-        this.updateImageName = this.updateImageName.bind(this);
-        this.updateImageCategory = this.updateImageCategory.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+class Addproduct extends React.Component {
+    // constructor(props) {
+    //     super(props);
+        state = {
+            product: {
+                name: "", 
+                price: ""
+            }
+        };
+        
+        /** we don't need these lines while using arrow function declaration */
+        // this.updateProductName = this.updateProductName.bind(this);
+        // this.updateProductPrice = this.updateProductPrice.bind(this);
+        // this.handleSubmit = this.handleSubmit.bind(this);
+    // }
+    updateProductName = (val) => {
+        const product = {...this.state.product, name:val };
+        this.setState({product: product});
     }
-    updateImageName(val) {
-        this.setState({name: val});
+    updateProductPrice = (val) => {
+        const product = {...this.state.product, price:val };
+        this.setState({product: product});
     }
-    updateImageCategory(val) {
-        this.setState({category: val});
-    }
-    handleSubmit(event) {
-        alert('A form was submitted: ' + this.state.name + "category:" + this.state.category);
-        event.preventDefault();
+    handleSubmit = (event) => {
+        event.preventDefault(); //to prevent the form to make the page reload
+        alert('A form was submitted: ' + this.state.product.name + "price:" + this.state.product.price);
     }
     render() {
         return  (
             <form onSubmit={this.handleSubmit}>
-                <h2> {this.props.mode} Image </h2>
+                <h2> {this.props.mode} Product </h2>
                 <div>
                     <label htmlFor="name"> Name </label>
-                    <InputBox type="text" name="name" onValueChange={this.updateImageName}/>
+                    <InputBox type="text" name="name" onValueChange={this.updateProductName}/>
                 </div>
                 <div>
-                    <label htmlFor="category"> Category </label>
-                    <InputBox type="category" name="category" onValueChange={this.updateImageCategory}/>
+                    <label htmlFor="price"> Price </label>
+                    <InputBox type="number" name="price" onValueChange={this.updateProductPrice}/>
                 </div>
                 <input type="submit" value="Submit"/>
                 
@@ -38,4 +47,4 @@ class AddImage extends React.Component {
     }
 }
 
-export default AddImage;
+export default Addproduct;

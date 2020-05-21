@@ -9,7 +9,7 @@ class ProductGrid extends React.Component {
     
     render() {
         const listItems = Products.map((product) => 
-            <Col sm={4}  className="mt-2">
+            <Col sm={4}  className="mt-2" key={product.id}>
                 <Card style={{ width: '18rem' }}>
                 <Card.Body>
                 <Card.Title>{product.name}</Card.Title>

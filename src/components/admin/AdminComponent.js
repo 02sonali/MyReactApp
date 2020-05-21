@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import ProductList from "./ProductListComponent";
-import AddImage from "./AddProductComponent";
+import AddProduct from "./AddProductComponent";
 
 function Admin() {
-    const [showAddImage, toggleAddImage] = useState(false); //example of Hook
+    const [showAddProduct, toggleAddProduct] = useState(false); //example of Hook
     const [isEditMode, setEditMode] = useState(false);
     function openEditMode(newValue) {
         setEditMode(newValue);
@@ -11,8 +11,8 @@ function Admin() {
   
     return  (
         <>
-            <button onClick={() => isEditMode ? setEditMode(false) : toggleAddImage(!showAddImage)}> { showAddImage || isEditMode ? "Cancel" : " Add Image"} </button>
-            { showAddImage || isEditMode? <AddImage mode={isEditMode? "Edit" : "Add"}/> : <ProductList showEditMode={openEditMode}/>}
+            <button onClick={() => isEditMode ? setEditMode(false) : toggleAddProduct(!showAddProduct)}> { showAddProduct || isEditMode ? "Cancel" : " Add Product"} </button>
+            { showAddProduct || isEditMode? <AddProduct mode={isEditMode? "Edit" : "Add"}/> : <ProductList showEditMode={openEditMode}/>}
         </>
     );
 }

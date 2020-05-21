@@ -1,12 +1,14 @@
 import React from "react";
 
 class InputBox extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {value: ""};
-        this.handleChange = this.handleChange.bind(this);
-    }
-    handleChange(event) {
+    // constructor(props) {
+    //     super(props);
+    //     state = {value: ""};
+    //     this.handleChange = this.handleChange.bind(this); // we don't need this line while using arrow function declaration
+    // }
+    state = {value: ""};
+
+    handleChange = (event) => {
         this.setState({value: event.target.value});
         this.props.onValueChange(event.target.value);
     }
