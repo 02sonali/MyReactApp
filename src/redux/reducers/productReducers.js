@@ -1,6 +1,8 @@
+import * as types from "../actions/actionTypes";
+
 export default function productReducer(state =[], action) {
     switch(action.type) {
-        case "CREATE_PRODUCT":
+        case types.CREATE_PRODUCT:
             /**TODO - you can store the products by id in array instead of direct index 
              * so that you can directly find that product like products[id] instead of using a find operation
              * This is called normalizing

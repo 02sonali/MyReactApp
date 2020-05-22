@@ -3,6 +3,7 @@ import InputBox from "../common/InputBox";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import * as ProductActions from "../../redux/actions/productActions";
+import { bindActionCreators } from "redux";
 
 class AddProduct extends React.Component {
     // constructor(props) {
@@ -29,7 +30,7 @@ class AddProduct extends React.Component {
     }
     handleSubmit = (event) => {
         event.preventDefault(); //to prevent the form to make the page reload
-        this.props.dispatch(ProductActions.createProduct(this.state.product));
+        this.props.actions.createProduct(this.state.product);
         this.props.productAdded();
     }
     render() {
@@ -52,13 +53,24 @@ class AddProduct extends React.Component {
 }
 
 AddProduct.propTypes = {
-    dispatch: PropTypes.func.isRequired
+    // createProduct: PropTypes.func.isRequired
+    actions: PropTypes.object.isRequired
 }
 
-function mapStateToProps(state, ownProps) {
+function mapStateToProps(state) {
     return {
         product: state.product
     }
 }
 
-export default connect(mapStateToProps)(AddProduct);
+function mapDispatchToProps(dispatch) {
+    return {
+        /** there are 4 different ways to dispatch actions in a component */
+        // 1st way - ignore mapDispatchToProps and use default dispatch using this.props.dispatch(ProductActions.createProduct(this.state.product))
+        //createProduct: ProductActions.createProduct // 2nd way - object form
+        // createProduct: product => dispatch(ProductActions.createProduct(product)) //3rd way - manual mapping
+        actions: bindActionCreators(ProductActions, dispatch) //4th way - bindActionCreators
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddProduct);

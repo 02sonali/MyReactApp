@@ -1,6 +1,6 @@
-import React, {useContext, useState, useEffect} from 'react';
-import { NavLink } from 'react-router-dom';
-import ThemeContext from '../ThemeContext';
+import React from 'react'; //{useContext, useState, useEffect}
+// import { NavLink } from 'react-router-dom';
+// import ThemeContext from '../ThemeContext';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import CartPopover from './CartPopover';
@@ -15,7 +15,6 @@ export const Header = () => {
   //   themeContext.setTheme(currentTheme); //todo - check browser warning here  -- React Hook useEffect has a missing dependency
   // }, [currentTheme])
 
-  const styleLink = {color:"orange"}
 
    return <Navbar bg="dark" variant="dark">
     <Navbar.Brand href="/">ShopApp</Navbar.Brand>
@@ -28,12 +27,12 @@ export const Header = () => {
     </Navbar>
    
     
-    {/* <label> Theme via context: <b> {themeContext.theme} </b>
+    /* <label> Theme via context: <b> {themeContext.theme} </b>
       <select value={currentTheme} onChange={e => changeTheme(e.currentTarget.value)}>
         <option value="light">Light</option>
         <option value="dark">Dark</option>
       </select>
-    </label> */}
+    </label> */
     
 }
 
