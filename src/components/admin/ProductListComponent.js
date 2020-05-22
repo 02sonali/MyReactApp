@@ -1,20 +1,19 @@
 import React from "react";
-import ProductService from "../../services/ProductService";
-import Products from "../../mock-api/ProductList.json";
+// import ProductService from "../../services/ProductService";
+// import Products from "../../mock-api/ProductList.json";
+import {connect} from "react-redux";
+
 class ProductList extends React.Component {
     constructor(props) {
         super(props);
-        this.productService = new ProductService();
-        this.state = {items: Products};
-    }
-    componentDidMount() {
-        //this.getItems();
+        // this.productService = new ProductService();
+        this.state = {products: []};
     }
     showEditMode = () => {
         this.props.showEditMode(true);
     }
     render() {
-        let productRows = Products.map((product) => <tr key={product.id}>
+        let productRows = this.props.products.map((product) => <tr key={product.name}>
             <td>{product.name}</td>
             <td>{product.price}</td>
             <td>
@@ -36,11 +35,17 @@ class ProductList extends React.Component {
             </table>
         );
     }
-    getItems() {
-        // this.productService.getproducts().then(items => {
-        //     this.setState({items: items});
+    getproducts() {
+        // this.productService.getproducts().then(products => {
+        //     this.setState({products: products});
         // });
     }
 }
 
-export default ProductList;
+function mapStateToProps(state, ownProps) {
+    return {
+        products: state.products
+    }
+}
+
+export default connect(mapStateToProps)(ProductList);//mapDispatchToProps is automatically passed by connect if we omit it

@@ -5,7 +5,7 @@ export default function productReducer(state =[], action) {
              * so that you can directly find that product like products[id] instead of using a find operation
              * This is called normalizing
              */
-            return [...state, {...action.product}] //to push a product to state array, don't use push here as it mutates the original state
+            return [...state, {...action.product}] //to push a product to state products array, don't use push here as it mutates the original state
         default:
             return state; // you should always declare default case
     }
