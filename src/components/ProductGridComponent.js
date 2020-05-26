@@ -7,11 +7,18 @@ import Col from 'react-bootstrap/Col';
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import * as ProductActions from "../redux/actions/productActions";
+import * as CartActions from "../redux/actions/cartActions";
 
 class ProductGrid extends React.Component {
     state = {
-        products: []
+        products: [],
+        searchText: ''
     };
+
+    addToCart = (e, product) => {
+        e.preventDefault();
+        this.props.addToCart(product);
+    }
 
     componentDidMount() {
         this.props.getProducts();
@@ -22,13 +29,13 @@ class ProductGrid extends React.Component {
             <Col sm={4}  className="mt-2" key={product.id}>
                 <Card style={{ width: '18rem' }}>
                 <Card.Body>
-                <Card.Title>{product.name}</Card.Title>
-                <Card.Subtitle className="mb-2 text-muted">Rs. {product.price}.00</Card.Subtitle>
-                <Card.Text>
-                {product.description}
-                </Card.Text>
-                <Card.Link href={`/product/${product.id}`}>View Details</Card.Link>
-                <Card.Link href="#">Add to Cart</Card.Link>
+                    <Card.Title>{product.name}</Card.Title>
+                    <Card.Subtitle className="mb-2 text-muted">Rs. {product.price}.00</Card.Subtitle>
+                    <Card.Text>
+                        {product.description}
+                    </Card.Text>
+                    <Card.Link href={`/product/${product.id}`}>View Details</Card.Link>
+                    <Card.Link href="#" onClick={(ev) => this.addToCart(ev, product)}>Add to Cart</Card.Link>
                 </Card.Body>
                 </Card>
             </Col>
@@ -46,6 +53,7 @@ ProductGrid.propTypes = {
 }
 
 function mapStateToProps(state) {
+    console.log(state);
     return {
         products: state.products
     }
@@ -53,7 +61,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        getProducts: () => dispatch(ProductActions.getProducts())
+        getProducts: () => dispatch(ProductActions.getProducts()),
+        addToCart: (product) => dispatch(CartActions.addToCart(product))
     }
 }
 

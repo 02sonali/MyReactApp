@@ -1,4 +1,7 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import * as ProductActions from "../redux/actions/productActions";
+
 
 class Search extends React.Component {
     /**
@@ -20,14 +23,13 @@ class Search extends React.Component {
         this.setState({searchText: event.target.value});
     }
     
-    searchImage = (event) => {
-        console.log("search clicked", this.state.searchText);
-        event.preventDefault();
+    searchProduct = () => {
+        this.props.dispatch(ProductActions.searchProduct(this.state.searchText));
     }
     
     render() {
-        return <div><input type="text" value={this.state.value} onChange={this.handleChange} placeholder="Search category"/><button onClick={this.searchImage}> Search </button></div>
+        return <div><input type="text" value={this.state.value} onChange={this.handleChange} placeholder="Search category"/><button onClick={this.searchProduct}> Search </button></div>
     }
 }
 
-export default Search;
+export default connect()(Search);

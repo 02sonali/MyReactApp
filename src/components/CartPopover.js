@@ -2,9 +2,20 @@ import React from "react";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Popover from "react-bootstrap/Popover";
 import Button from "react-bootstrap/Button";
+import * as cartActions from "../redux/actions/cartActions";
+import {connect} from "react-redux";
+import PropTypes from "prop-types";
+
 class CartPopover extends React.Component {
+    state = {
+      items: []
+    }
+    componentDidMount() {
+      this.props.getItems();
+    }
+    
     render() {
-        return <OverlayTrigger
+      return <OverlayTrigger
         trigger="click"
         placement="bottom"
         overlay={
@@ -17,9 +28,25 @@ class CartPopover extends React.Component {
           </Popover>
         }
       >
-        <Button variant="secondary">My Cart</Button>
+      <Button variant="secondary">My Cart</Button>
       </OverlayTrigger>
     }
 }
 
-export default CartPopover;
+CartPopover.propTypes = {
+  getItems: PropTypes.func.isRequired
+}
+
+function mapStateToProps(state) {
+  return {
+    items: state.items
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+      getItems: () => dispatch(cartActions.getCart()),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CartPopover);
