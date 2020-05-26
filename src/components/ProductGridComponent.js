@@ -1,14 +1,24 @@
 import React from 'react';
-import Products from "../mock-api/ProductList.json";
+// import Products from "../mock-api/ProductList.json";
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import PropTypes from "prop-types";
+import {connect} from "react-redux";
+import * as ProductActions from "../redux/actions/productActions";
 
 class ProductGrid extends React.Component {
+    state = {
+        products: []
+    };
+
+    componentDidMount() {
+        this.props.getProducts();
+    }
     
     render() {
-        const listItems = Products.map((product) => 
+        const listItems = this.props.products.map((product) => 
             <Col sm={4}  className="mt-2" key={product.id}>
                 <Card style={{ width: '18rem' }}>
                 <Card.Body>
@@ -28,12 +38,23 @@ class ProductGrid extends React.Component {
                 {listItems}
             </Row>
         </Container>
-           
-            
-         
-       
     }
 }
 
+ProductGrid.propTypes = {
+    getProducts: PropTypes.func.isRequired
+}
 
-export default ProductGrid;
+function mapStateToProps(state) {
+    return {
+        products: state.products
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        getProducts: () => dispatch(ProductActions.getProducts())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductGrid);
