@@ -24,7 +24,7 @@ class Search extends React.Component {
     }
     
     searchProduct = () => {
-        this.props.dispatch(ProductActions.searchProduct(this.state.searchText));
+        this.props.dispatch(ProductActions.getProducts(this.state.searchText));
     }
     
     render() {

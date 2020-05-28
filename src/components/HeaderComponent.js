@@ -23,7 +23,6 @@ export const Header = () => {
         <Nav.Link href="/admin">Admin</Nav.Link>
         <CartPopover></CartPopover>
       </Nav>
-  
     </Navbar>
    
     

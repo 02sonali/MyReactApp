@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import * as ProductActions from "../../redux/actions/productActions";
 import { bindActionCreators } from "redux";
+import { Redirect } from "react-router-dom";
 
 class AddProduct extends React.Component {
     // constructor(props) {
@@ -12,7 +13,8 @@ class AddProduct extends React.Component {
             product: {
                 name: "", 
                 price: ""
-            }
+            },
+            redirect: null
         };
         
         /** we don't need these lines while using arrow function declaration */
@@ -28,14 +30,25 @@ class AddProduct extends React.Component {
         const product = {...this.state.product, price:val };
         this.setState({product: product});
     }
-    handleSubmit = (event) => {
-        event.preventDefault(); //to prevent the form to make the page reload
-        this.props.actions.createProduct(this.state.product);
-        this.props.productAdded();
-    }
+    // handleSubmit = (event) => {
+    //     event.preventDefault(); //to prevent the form to make the page reload
+    //     if(this.props.mode === "Add") {
+    //         this.props.actions.createProduct(this.state.product);
+    //     } else {
+    //         //handle edit here
+    //     }
+    // }
     render() {
+        if (this.state.redirect) {
+            return <Redirect to={this.state.redirect} />
+        }
         return  (
-            <form onSubmit={this.handleSubmit}>
+            <form onSubmit= {(e) => 
+                {
+                    e.preventDefault(); 
+                    this.props.actions.createProduct(this.state.product);  
+                    this.setState({ redirect: "/admin" });  //todo - how to navigate when a action has been completed
+                }}>
                 <h2> {this.props.mode} Product </h2>
                 <div>
                     <label htmlFor="name"> Name </label>

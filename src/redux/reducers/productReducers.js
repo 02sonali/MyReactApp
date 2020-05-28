@@ -16,8 +16,7 @@ export default function productReducer(state =[], action) {
             return [...state];
         case types.SET_PRODUCTS:
             return [...state, ...action.products]; //TODO
-        case types.SEARCH_PRODUCT:
-            return {products: [...state], searchText: action.text}
+
         default:
             return state; // you should always declare default case
     }

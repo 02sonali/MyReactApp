@@ -1,6 +1,7 @@
 import * as types from './actionTypes';
 
 export function createProduct(product) {
+    
     return {type: types.CREATE_PRODUCT, product: product}; //or write product only {type: 'CREATE_PRODUCT', product}
 }
 
@@ -12,9 +13,6 @@ export function setProducts(products) {
     return {type: types.SET_PRODUCTS,products: products};
 }
 
-export function searchProduct(text) {
-    return {type: types.SEARCH_PRODUCT, text: text};
-}
 
 export function editProduct(id) {
     return {type: types.EDIT_PRODUCT, id:id};

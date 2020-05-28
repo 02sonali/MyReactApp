@@ -53,9 +53,9 @@ ProductGrid.propTypes = {
 }
 
 function mapStateToProps(state) {
-    console.log(state);
+    console.log(state); //todo - state is getting called 3 times here for each connct component, use Reselect here to avoid that
     return {
-        products: state.products
+        products: state.products   
     }
 }
 
